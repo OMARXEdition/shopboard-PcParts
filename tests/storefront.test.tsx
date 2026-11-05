@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import App from '../src/app/App'
 const product = {
   id: 'cpu-1',
@@ -84,13 +85,26 @@ describe('storefront', () => {
       'fetch',
       vi.fn().mockResolvedValue({ ok: true, json: async () => [] }),
     )
-    render(
+    const emptyView = render(
       <StrictMode>
         <App />
       </StrictMode>,
     )
     expect(
       await screen.findByText('No parts on the shelf yet.'),
+    ).toBeInTheDocument()
+    emptyView.unmount()
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({ ok: true, json: async () => [product] }),
+    )
+    render(<App />)
+    await screen.findByRole('button', { name: 'View Retro Core 8' })
+    await userEvent.type(screen.getByRole('searchbox'), 'no-such-part')
+    expect(screen.getByText('No matching parts.')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Reset filters' }))
+    expect(
+      screen.getByRole('button', { name: 'View Retro Core 8' }),
     ).toBeInTheDocument()
   })
 })

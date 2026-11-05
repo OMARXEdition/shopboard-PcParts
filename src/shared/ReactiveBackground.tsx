@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react'
+import { useRef } from 'react'
 import { usePointerBackground } from './usePointerBackground'
 const particles = Array.from({ length: 18 }, (_, position) => {
   const left = (position * 37 + 9) % 100,

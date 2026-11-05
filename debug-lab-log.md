@@ -1,4 +1,4 @@
-﻿# Debug lab log
+# Debug lab log
 
 Source: https://shopboard-api.vercel.app/debug-lab and its linked debug-lab-src.zip, inspected on 2026-11-05.
 

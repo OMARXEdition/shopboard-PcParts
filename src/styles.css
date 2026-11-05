@@ -451,7 +451,7 @@ button {
   font-size: 0.85rem;
 }
 .sort-field select {
-  font-family: var(--pixel);
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.12rem;
 }
 .product-grid {
@@ -503,27 +503,25 @@ button {
   background: #30213f;
   box-shadow: inset 1px 1px 0 #e2dbb4;
 }
-.product-art {
+.product-image-button {
   display: grid;
   place-items: center;
-  background-color: #eee0bb;
-  background-image:
-    linear-gradient(#aa936c12 1px, transparent 1px),
-    linear-gradient(90deg, #aa936c12 1px, transparent 1px);
-  background-size: 12px 12px;
-  aspect-ratio: 1.5;
+  width: 100%;
+  padding: 12px;
+  border: 0;
   border-bottom: 1px solid #ac98783b;
-  position: relative;
+  background: #eee0bb;
+  cursor: pointer;
 }
-.product-art img {
-  width: 82%;
-  height: 100%;
-  max-height: 185px;
+.product-art {
+  display: block;
+  width: 100%;
+  height: 185px;
   object-fit: contain;
   image-rendering: auto;
   transition: transform 0.2s;
 }
-.product-card:hover .product-art img {
+.product-image-button:hover .product-art {
   transform: translateY(-4px);
 }
 .product-info {
@@ -533,7 +531,7 @@ button {
   flex: 1;
 }
 .category-label {
-  font-family: var(--pixel);
+  font-family: Arial, Helvetica, sans-serif;
   color: #73538b;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -546,18 +544,6 @@ button {
   font-size: 0.98rem;
   line-height: 1.4;
   margin: 0 0 7px;
-}
-.product-title button {
-  font: inherit;
-  color: inherit;
-  border: 0;
-  background: transparent;
-  text-align: left;
-  padding: 0;
-}
-.product-title button:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 .product-description {
   font-size: 0.77rem;
@@ -1037,8 +1023,8 @@ button {
   .nav-links {
     gap: 35px;
   }
-  .product-art img {
-    max-height: 170px;
+  .product-art {
+    height: 170px;
   }
   .footer-grid {
     gap: 70px;

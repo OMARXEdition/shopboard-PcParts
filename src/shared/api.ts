@@ -1,4 +1,5 @@
-﻿import { categories, type Product } from '../modules/catalog/catalog.types'
+import { categories } from '../modules/catalog/catalog.types'
+import type { Product } from '../modules/catalog/catalog.types'
 export const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
 const record = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null

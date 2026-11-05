@@ -1,4 +1,4 @@
-﻿import { useEffect, type RefObject } from 'react'
+import { useEffect, type RefObject } from 'react'
 export function usePointerBackground(ref: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const layer = ref.current

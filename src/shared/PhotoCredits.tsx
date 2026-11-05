@@ -1,4 +1,4 @@
-﻿import { photoCredits } from './photo-credits'
+import { photoCredits } from './photo-credits'
 export function PhotoCredits() {
   return (
     <details className="photo-credits container">

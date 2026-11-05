@@ -1,4 +1,4 @@
-﻿import { readFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import ts from 'typescript'
 import { it, expect } from 'vitest'
