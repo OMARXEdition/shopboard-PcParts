@@ -39,7 +39,8 @@ than an endless reload loop.
 
 ## Static hosting
 
-Vite's base path is `/Shopboard-PcParts/`. Resolve JSON and images against that
+Vite's base path is `/Shopboard-PcParts/` for GitHub Pages and `/` for Netlify
+builds (detected through `NETLIFY=true`). Resolve JSON and images against that
 base. Product details are dialogs, so no server route rewriting is required.
 GitHub Actions publishes built dist content only. Project-local agent skills are
 not loaded by the browser or included in the application module graph.

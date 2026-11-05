@@ -1,7 +1,12 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
+
+// GitHub Pages serves the site from /Shopboard-PcParts/, while Netlify serves it
+// from the domain root. Netlify sets NETLIFY=true during its builds.
+const base = process.env.NETLIFY === 'true' ? '/' : '/Shopboard-PcParts/'
+
 export default defineConfig({
-  base: '/Shopboard-PcParts/',
+  base,
   plugins: [react()],
   test: {
     environment: 'jsdom',
