@@ -112,8 +112,9 @@ jsdom test does not establish visual rendering or native focus behavior.
 
 ## GitHub Pages
 
-The repository base is `/Shopboard-PcParts/`. JSON, photographs and built assets
-resolve relative to that base. The single deployment workflow installs locked
+The default build base is `/` for root-hosted sites such as Netlify. The GitHub Pages
+workflow overrides it with `/Shopboard-PcParts/` for the repository subpath.
+JSON, photographs and built assets resolve relative to the active base. The single deployment workflow installs locked
 dependencies, runs checks, builds, and uploads only dist. Product details use
 dialogs, so static hosting does not need client-side route rewriting. Publishing
 or pushing changes requires an explicit instruction.

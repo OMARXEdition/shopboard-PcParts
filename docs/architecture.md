@@ -39,9 +39,10 @@ than an endless reload loop.
 
 ## Static hosting
 
-Vite's base path is `/Shopboard-PcParts/`. Resolve JSON and images against that
-base. Product details are dialogs, so no server route rewriting is required.
-GitHub Actions publishes built dist content only. Project-local agent skills are
+Vite's default base path is `/`. The GitHub Pages workflow builds with
+`/Shopboard-PcParts/` for its repository subpath. Resolve JSON and images against
+the active build base. Product details are dialogs, so no server route rewriting
+is required. GitHub Actions publishes built dist content only. Project-local agent skills are
 not loaded by the browser or included in the application module graph.
 
 ## Verification
