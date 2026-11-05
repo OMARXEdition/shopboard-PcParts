@@ -1,14 +1,13 @@
 import type { Product } from '../catalog/catalog.types'
-import { useCart } from './cart.context'
-import { Modal, ProductImage } from '../../shared/ui'
+import { useCart } from './useCart'
+import { Modal } from '../../shared/Modal'
+import { ProductImage } from '../../shared/ProductImage'
 import { formatPrice } from '../../shared/format'
-export function CartDrawer({
-  products,
-  onClose,
-}: {
+export interface CartDrawerProps {
   products: Product[]
   onClose: () => void
-}) {
+}
+export function CartDrawer({ products, onClose }: CartDrawerProps) {
   const cart = useCart()
   return (
     <Modal

@@ -18,11 +18,11 @@ describe('shipped catalog assets', () => {
   })
 })
 import { photoCredits } from '../src/shared/photo-credits'
-it('credits every shipped category photo and hero with author, source, license and resize details', () => {
+it('credits every shipped category photo with author, source, license and resize details', () => {
   const products = parseProducts(
     JSON.parse(readFileSync('public/data/products.json', 'utf8')),
   )
-  const expected = new Set([...products.map((p) => p.image), 'photos/hero.jpg'])
+  const expected = new Set(products.map((p) => p.image))
   expect(photoCredits).toHaveLength(expected.size)
   for (const credit of photoCredits) {
     expect(expected.has(credit.file)).toBe(true)

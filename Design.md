@@ -3,13 +3,13 @@
 ## Approved direction
 
 A retro PC-parts store inspired by the supplied 1990s pixel-web reference, with
-original branding and licensed real computer photographs. This is a store rather than a studio
+original pixel branding and hero artwork, plus licensed real hardware photographs. This is a store rather than a studio
 portfolio. Names, specifications and prices are demo data; real photographs represent hardware categories rather than exact demo models.
 
 ## Visual language
 
 Use a deep navy grid background, teal and orange accents, cream window panels,
-purple title bars, crisp stepped borders and offset shadows. Real photographs of computer hardware appear throughout, including a prominent desktop computer hero. Pixel styling remains in the logo, decorative grid, typography and window chrome. Keep
+purple title bars, crisp stepped borders and offset shadows. Use an original pixel-art desktop computer in the hero and real photographs on product cards and in product details. Pixel styling remains in the logo, decorative grid, typography and window chrome. Keep
 real selectable text over decorative artwork. Avoid flashing, excessive motion,
 fake discounts, ratings, certifications, or fabricated business claims.
 
@@ -24,7 +24,7 @@ fallbacks while the webfont loads and avoid fixed text heights that clip glyphs.
 ## Page and interaction
 
 - Header with wordmark, catalog navigation and cart count.
-- Hero with a short hardware-focused message, browse action and a real computer photograph.
+- Hero with a short hardware-focused message, browse action and an original pixel-art computer illustration.
 - Category navigation, labeled search and sorting controls, and product-window cards.
 - Product details in an accessible modal, with photograph, description, specs and add action.
 - Cart drawer with quantities, remove, clear, total, empty state and demo notice.
@@ -49,7 +49,7 @@ Real orders/payments, authentication, PC compatibility checks, a backend service
 
 ## Approved artwork and pointer update
 
-Use local, correctly attributed real photographs for the hero and every hardware category. Do not use AI-generated images, renders, pixel hardware drawings, external image hotlinks, or photos of unrelated components. Keep photos naturally rendered with object-fit: contain and without pixelated image rendering. Preserve adequate source resolution and aspect ratios. Each photo must have source, author and license recorded in the asset-source documentation and visible photo credits. Two demo products may share a clearly representative category photo; never imply that their fictional names/specifications describe the exact photographed model.
+Use the original pixel-art hero and logo. Use local, correctly attributed real photographs for every hardware category; product images must not be AI-generated images, renders, pixel hardware drawings, external hotlinks, or photos of unrelated components. Keep photos naturally rendered with object-fit: contain and without pixelated image rendering. Preserve adequate source resolution and aspect ratios. Each photo must have source, author and license recorded in the asset-source documentation and visible photo credits. Two demo products may share a clearly representative category photo; never imply that their fictional names/specifications describe the exact photographed model.
 
 The hero includes a decorative cursor-lit teal field, subtle grid parallax, and fixed
 pixel particles that shift in response to pointer position. It must not intercept

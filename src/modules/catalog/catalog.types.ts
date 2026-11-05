@@ -1,4 +1,13 @@
-export const categories = [
+export type Category =
+  | 'CPU'
+  | 'GPU'
+  | 'Motherboard'
+  | 'Memory'
+  | 'Storage'
+  | 'Power supply'
+  | 'Case'
+  | 'Cooling'
+export const categories: readonly Category[] = [
   'CPU',
   'GPU',
   'Motherboard',
@@ -7,8 +16,7 @@ export const categories = [
   'Power supply',
   'Case',
   'Cooling',
-] as const
-export type Category = (typeof categories)[number]
+]
 export interface Product {
   id: string
   name: string

@@ -1,16 +1,5 @@
 export const photoCredits = [
   {
-    file: 'photos/hero.jpg',
-    title: 'File:ATX computer case - left - 2018-05-18.jpg',
-    source:
-      'https://commons.wikimedia.org/wiki/File:ATX_computer_case_-_left_-_2018-05-18.jpg',
-    author: 'Bretwa',
-    license: 'CC BY-SA 4.0',
-    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
-    changes:
-      'Wikimedia resized thumbnail; photographic content unaltered. Displayed with CSS contain.',
-  },
-  {
     file: 'photos/cpu.jpg',
     title: 'File:AMD Ryzen 9 7900X.jpg',
     source: 'https://commons.wikimedia.org/wiki/File:AMD_Ryzen_9_7900X.jpg',

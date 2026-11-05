@@ -1,17 +1,13 @@
 import { useState } from 'react'
 import type { Product, SortOrder } from './catalog.types'
 import { selectProducts } from './catalog.logic'
-import { WindowBar, ProductImage } from '../../shared/ui'
-import { formatPrice } from '../../shared/format'
-export function Catalog({
-  products,
-  onView,
-  onAdd,
-}: {
+import { ProductCard } from './ProductCard'
+export interface CatalogProps {
   products: Product[]
-  onView: (p: Product) => void
-  onAdd: (p: Product) => void
-}) {
+  onView: (product: Product) => void
+  onAdd: (product: Product) => void
+}
+export function Catalog({ products, onView, onAdd }: CatalogProps) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('all')
   const [sort, setSort] = useState<SortOrder>('default')
@@ -74,7 +70,14 @@ export function Catalog({
               <select
                 id="sort"
                 value={sort}
-                onChange={(e) => setSort(e.target.value as SortOrder)}
+                onChange={(e) =>
+                  setSort(
+                    e.target.value === 'price-asc' ||
+                      e.target.value === 'price-desc'
+                      ? e.target.value
+                      : 'default',
+                  )
+                }
               >
                 <option value="default">Default</option>
                 <option value="price-asc">Price: low to high</option>
@@ -107,45 +110,14 @@ export function Catalog({
             </div>
           ) : (
             <div className="product-grid">
-              {visible.map((p, i) => (
-                <article className="window product-card" key={p.id}>
-                  <WindowBar>
-                    <span className="numeric">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>{' '}
-                    / {p.category.toUpperCase()}
-                  </WindowBar>
-                  <button
-                    className="product-image-button"
-                    aria-label={`View ${p.name}`}
-                    onClick={() => onView(p)}
-                  >
-                    <ProductImage
-                      path={p.image}
-                      alt={p.alt}
-                      className="product-art"
-                    />
-                  </button>
-                  <div className="product-info">
-                    <p className="category-label">
-                      {p.category} / category photo
-                    </p>
-                    <h3 className="product-title">{p.name}</h3>
-                    <p className="product-description">{p.specs[0].value}</p>
-                    <div className="product-bottom">
-                      <span className="price numeric">
-                        {formatPrice(p.priceCents)}
-                      </span>
-                      <button
-                        className="primary-button"
-                        aria-label={`Add ${p.name} to cart`}
-                        onClick={() => onAdd(p)}
-                      >
-                        + Add
-                      </button>
-                    </div>
-                  </div>
-                </article>
+              {visible.map((product, position) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  position={position + 1}
+                  onView={onView}
+                  onAdd={onAdd}
+                />
               ))}
             </div>
           )}

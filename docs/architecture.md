@@ -3,12 +3,12 @@
 ## Module boundaries
 
 - `src/app/`: page composition and provider wiring.
-- `src/modules/catalog/`: product types, response validation, loading state, search/filter/sort logic and catalog components.
+- `src/modules/catalog/`: product types, immutable search/filter/sort logic, catalog and product-card components.
 - `src/modules/cart/`: cart reducer, persistence, selectors and cart UI.
 - `src/modules/product-detail/`: the selected-product dialog and specifications.
-- `src/shared/`: API boundary, money formatting and reusable UI.
+- `src/shared/`: API validation boundary, money formatting, one-component UI files and reusable hooks.
 - `public/data/products.json`: the sole catalog source, fetched over HTTP.
-- `public/photos/`: real, licensed category photographs and source metadata; `public/art/` retains original pixel logo/decor assets.
+- `public/photos/`: real, licensed category photographs and source metadata; `public/art/` contains the original pixel hero and logo.
 
 Keep components near the feature behavior they render. Pure functions and reducers
 have no DOM access. Shared UI may use DOM APIs for focus and dialog behavior;

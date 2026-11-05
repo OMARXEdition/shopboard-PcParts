@@ -2,13 +2,12 @@
 
 ## Real hardware photographs
 
-All nine photographs are local JPEG copies of Wikimedia Commons thumbnails. They are actual photographs, not AI images or renders. Two fictional demo products may share a representative category photo. Their names/specifications/prices do not describe the exact pictured models. Images retain natural rendering and aspect ratio with CSS contain.
+All eight product photographs are local JPEG copies of Wikimedia Commons thumbnails. They are actual photographs, not AI images or renders. Two fictional demo products may share a representative category photo. Their names/specifications/prices do not describe the exact pictured models. Images retain natural rendering and aspect ratio with CSS contain.
 
-The footer includes accessible credits linking each source and license. The hero shows a populated desktop PC interior; case cards show the blue Fractal Design chassis.
+The footer includes accessible credits linking each product photo source and license. The hero is the original pixel-art computer illustration; case cards show the blue Fractal Design chassis.
 
 ## Author and license attribution
 
-- **photos/hero.jpg**: [File:ATX computer case - left - 2018-05-18.jpg](https://commons.wikimedia.org/wiki/File:ATX_computer_case_-_left_-_2018-05-18.jpg) — Bretwa. [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0). Wikimedia resized thumbnail; photographic content unaltered. Displayed with CSS contain.
 - **photos/cpu.jpg**: [File:AMD Ryzen 9 7900X.jpg](https://commons.wikimedia.org/wiki/File:AMD_Ryzen_9_7900X.jpg) — CristoCalis. [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0). Wikimedia resized thumbnail; photographic content unaltered. Displayed with CSS contain.
 - **photos/psu.jpg**: [File:ATX Computer power supply unit.jpg](https://commons.wikimedia.org/wiki/File:ATX_Computer_power_supply_unit.jpg) — Dmitry Makeev. [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0). Wikimedia resized thumbnail; photographic content unaltered. Displayed with CSS contain.
 - **photos/storage.jpg**: [File:SAMSUNG M.2 NVMe SSD 990 PRO 4TB.jpg](https://commons.wikimedia.org/wiki/File:SAMSUNG_M.2_NVMe_SSD_990_PRO_4TB.jpg) — Dinkun Chen. [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0). Wikimedia resized thumbnail; photographic content unaltered. Displayed with CSS contain.
@@ -20,7 +19,7 @@ The footer includes accessible credits linking each source and license. The hero
 
 ## Original decoration
 
-The original pixel logo and cursor-reactive grid/pixel decoration remain project artwork. Retired hardware SVGs are not referenced by the catalog or hero.
+The original pixel computer hero (art/hero.svg), logo (art/logo.svg), and cursor-reactive grid/pixel decoration are project artwork. Unused hardware drawings and the retired hero photograph have been removed.
 
 ## Typography
 

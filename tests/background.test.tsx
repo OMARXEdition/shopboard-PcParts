@@ -1,4 +1,4 @@
-﻿import { StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { render, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { ReactiveBackground } from '../src/shared/ReactiveBackground'
@@ -20,9 +20,9 @@ describe('reactive decorative background', () => {
         <ReactiveBackground />
       </StrictMode>,
     )
-    const layer = view.container.querySelector(
-      '.reactive-background',
-    ) as HTMLElement
+    const layer = view.container.querySelector('.reactive-background')
+    if (!(layer instanceof HTMLElement))
+      throw new Error('Missing background element')
     expect(layer).toHaveAttribute('aria-hidden', 'true')
     fireEvent(
       document,

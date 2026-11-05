@@ -1,15 +1,17 @@
 import type { Product } from '../catalog/catalog.types'
-import { Modal, ProductImage } from '../../shared/ui'
+import { Modal } from '../../shared/Modal'
+import { ProductImage } from '../../shared/ProductImage'
 import { formatPrice } from '../../shared/format'
+export interface ProductDetailsProps {
+  product: Product
+  onClose: () => void
+  onAdd: (p: Product) => void
+}
 export function ProductDetails({
   product,
   onClose,
   onAdd,
-}: {
-  product: Product
-  onClose: () => void
-  onAdd: (p: Product) => void
-}) {
+}: ProductDetailsProps) {
   return (
     <Modal
       title={product.name}

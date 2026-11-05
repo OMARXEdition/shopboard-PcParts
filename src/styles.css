@@ -1175,3 +1175,13 @@ button {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* The hero returns to the original pixel computer; catalog photos remain natural. */
+.hero-art {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  image-rendering: pixelated;
+  object-fit: contain;
+}

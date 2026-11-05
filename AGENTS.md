@@ -11,7 +11,7 @@ Keep this repository separate from the original Shopboard project.
 
 - Read `Design.md` before UI or styling changes and `docs/architecture.md` before changing module boundaries.
 - Summarize a new task and clarify material missing requirements. Explicit approval of a discussed plan authorizes its implementation.
-- Use project-local Superpowers skills under `.agents/skills/`: `using-superpowers`, `brainstorming`, `writing-plans`, `test-driven-development`, `systematic-debugging`, and `verification-before-completion` when applicable. Preserve the vendored license and source record.
+- Read `CLAUDE.md` for React workflow and observed mistakes. The only project-local skill packages belong under `.claude/skills/`: Vercel React best practices and composition patterns. Apply them when changing React rendering or component composition.
 - Explain each change: what changed, where, why, and how it was checked.
 - Ask before adding unapproved dependencies or new product behavior.
 - Let npm generate the lockfile. Never manually edit node_modules or commit secrets or .env files.
@@ -56,4 +56,4 @@ in package.json. CI installs locked dependencies and deploys only dist.
 
 - Keep the shared pointer-reactive hero background decorative (`aria-hidden` and `pointer-events: none`). Coalesce pointer input through requestAnimationFrame rather than updating React state per movement.
 - Disable movement for reduced motion and coarse pointers, reset on pointer exit/blur, and remove listeners/cancel queued frames on cleanup. Preserve keyboard operation and static fallback visuals.
-- Use local licensed real hardware photographs for product and hero imagery. Preserve retro pixel decoration separately; record source, author, license and any resizing, with visible photo credits.
+- Use local licensed real hardware photographs for products and original pixel artwork for the hero. Preserve retro pixel decoration separately; record source, author, license and any resizing, with visible photo credits.
