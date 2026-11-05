@@ -1,0 +1,306 @@
+[
+  {
+    "id": "cpu-1",
+    "name": "Retro Core 8",
+    "category": "CPU",
+    "description": "A demo cpu for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 24900,
+    "image": "photos/cpu.jpg",
+    "alt": "AMD Ryzen 9 7900X processor photograph; representative CPU category image",
+    "specs": [
+      {
+        "value": "8 cores / 16 threads",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "cpu-2",
+    "name": "Retro Core 12",
+    "category": "CPU",
+    "description": "A demo cpu for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 36900,
+    "image": "photos/cpu.jpg",
+    "alt": "AMD Ryzen 9 7900X processor photograph; representative CPU category image",
+    "specs": [
+      {
+        "value": "12 cores / 24 threads",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "gpu-1",
+    "name": "PixelForce 12",
+    "category": "GPU",
+    "description": "A demo gpu for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 42900,
+    "image": "photos/gpu.jpg",
+    "alt": "Gigabyte GTX 1660 Ti graphics card photograph; representative GPU category image",
+    "specs": [
+      {
+        "value": "12 GB video memory",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "gpu-2",
+    "name": "PixelForce 16",
+    "category": "GPU",
+    "description": "A demo gpu for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 58900,
+    "image": "photos/gpu.jpg",
+    "alt": "Gigabyte GTX 1660 Ti graphics card photograph; representative GPU category image",
+    "specs": [
+      {
+        "value": "16 GB video memory",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "motherboard-1",
+    "name": "Circuit B650",
+    "category": "Motherboard",
+    "description": "A demo motherboard for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 15900,
+    "image": "photos/motherboard.jpg",
+    "alt": "Asus ROG STRIX Z690-A motherboard photograph; representative motherboard image",
+    "specs": [
+      {
+        "value": "ATX / DDR5",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "motherboard-2",
+    "name": "Circuit X670",
+    "category": "Motherboard",
+    "description": "A demo motherboard for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 22900,
+    "image": "photos/motherboard.jpg",
+    "alt": "Asus ROG STRIX Z690-A motherboard photograph; representative motherboard image",
+    "specs": [
+      {
+        "value": "ATX / Wi-Fi",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "ram-1",
+    "name": "ByteKit 32 GB",
+    "category": "Memory",
+    "description": "A demo memory for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 8900,
+    "image": "photos/ram.jpg",
+    "alt": "Kingston HyperX desktop memory module photograph; representative RAM category image",
+    "specs": [
+      {
+        "value": "2 × 16 GB / DDR5",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "ram-2",
+    "name": "ByteKit 64 GB",
+    "category": "Memory",
+    "description": "A demo memory for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 15900,
+    "image": "photos/ram.jpg",
+    "alt": "Kingston HyperX desktop memory module photograph; representative RAM category image",
+    "specs": [
+      {
+        "value": "2 × 32 GB / DDR5",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "storage-1",
+    "name": "FlashDrive 1 TB",
+    "category": "Storage",
+    "description": "A demo storage for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 7900,
+    "image": "photos/storage.jpg",
+    "alt": "Samsung 990 PRO NVMe SSD photograph; representative storage category image",
+    "specs": [
+      {
+        "value": "NVMe / PCIe 4.0",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "storage-2",
+    "name": "FlashDrive 2 TB",
+    "category": "Storage",
+    "description": "A demo storage for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 12900,
+    "image": "photos/storage.jpg",
+    "alt": "Samsung 990 PRO NVMe SSD photograph; representative storage category image",
+    "specs": [
+      {
+        "value": "NVMe / PCIe 4.0",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "psu-1",
+    "name": "VoltBox 650",
+    "category": "Power supply",
+    "description": "A demo power supply for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 8900,
+    "image": "photos/psu.jpg",
+    "alt": "Modular ATX power supply photograph; representative PSU category image",
+    "specs": [
+      {
+        "value": "650 W / modular",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "psu-2",
+    "name": "VoltBox 850",
+    "category": "Power supply",
+    "description": "A demo power supply for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 11900,
+    "image": "photos/psu.jpg",
+    "alt": "Modular ATX power supply photograph; representative PSU category image",
+    "specs": [
+      {
+        "value": "850 W / modular",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "case-1",
+    "name": "Arcade Mini",
+    "category": "Case",
+    "description": "A demo case for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 6900,
+    "image": "photos/case.jpg",
+    "alt": "Photograph of a blue Fractal Design Focus G computer chassis; representative case category image",
+    "specs": [
+      {
+        "value": "Micro-ATX / compact",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "case-2",
+    "name": "Arcade Tower",
+    "category": "Case",
+    "description": "A demo case for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 9900,
+    "image": "photos/case.jpg",
+    "alt": "Photograph of a blue Fractal Design Focus G computer chassis; representative case category image",
+    "specs": [
+      {
+        "value": "ATX / full-size",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "cooling-1",
+    "name": "Frost Tower",
+    "category": "Cooling",
+    "description": "A demo cooling for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 3900,
+    "image": "photos/cooling.jpg",
+    "alt": "Be quiet! Dark Rock Top Flow CPU cooler photograph; representative cooling category image",
+    "specs": [
+      {
+        "value": "Single tower / 120 mm",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  },
+  {
+    "id": "cooling-2",
+    "name": "Frost Twin",
+    "category": "Cooling",
+    "description": "A demo cooling for exploring your next build. The real photo represents this hardware category; pictured model, capacity and specifications may differ from this fictional catalog item.",
+    "priceCents": 5900,
+    "image": "photos/cooling.jpg",
+    "alt": "Be quiet! Dark Rock Top Flow CPU cooler photograph; representative cooling category image",
+    "specs": [
+      {
+        "value": "Dual tower / 120 mm",
+        "label": "Configuration"
+      },
+      {
+        "value": "Illustrative demo model",
+        "label": "Catalog"
+      }
+    ]
+  }
+]

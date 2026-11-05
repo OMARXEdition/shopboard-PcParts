@@ -1,0 +1,50 @@
+﻿[
+  {
+    "file": "photos/gpu.jpg",
+    "title": "File:Gigabyte GTX 1660 Ti graphics card (51993493927).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Gigabyte_GTX_1660_Ti_graphics_card_(51993493927).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Gigabyte_GTX_1660_Ti_graphics_card_%2851993493927%29.jpg/960px-Gigabyte_GTX_1660_Ti_graphics_card_%2851993493927%29.jpg",
+    "author": "Chi Ho Chan from Hong Kong",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "modifications": "Wikimedia thumbnail resized to 960px; content unaltered",
+    "width": 960,
+    "height": 640
+  },
+  {
+    "file": "photos/motherboard.jpg",
+    "title": "File:2023 Płyta główna Asus ROG STRIX Z690-A GAMING WIFI.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:2023_P%C5%82yta_g%C5%82%C3%B3wna_Asus_ROG_STRIX_Z690-A_GAMING_WIFI.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_P%C5%82yta_g%C5%82%C3%B3wna_Asus_ROG_STRIX_Z690-A_GAMING_WIFI.jpg/960px-2023_P%C5%82yta_g%C5%82%C3%B3wna_Asus_ROG_STRIX_Z690-A_GAMING_WIFI.jpg",
+    "author": "Jacek Halicki",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "modifications": "Wikimedia thumbnail resized to 960px; content unaltered",
+    "width": 960,
+    "height": 1155
+  },
+  {
+    "file": "photos/ram.jpg",
+    "title": "File:HX318C10FB-8 rear 20160503.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:HX318C10FB-8_rear_20160503.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/HX318C10FB-8_rear_20160503.jpg/960px-HX318C10FB-8_rear_20160503.jpg",
+    "author": "Kenming Wang",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "modifications": "Wikimedia thumbnail resized to 960px; content unaltered",
+    "width": 960,
+    "height": 720
+  },
+  {
+    "file": "photos/cooling.jpg",
+    "title": "File:2023 Chłodzenie procesora be quiet! Dark Rock Top Flow (1).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:2023_Ch%C5%82odzenie_procesora_be_quiet!_Dark_Rock_Top_Flow_(1).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/2023_Ch%C5%82odzenie_procesora_be_quiet%21_Dark_Rock_Top_Flow_%281%29.jpg/960px-2023_Ch%C5%82odzenie_procesora_be_quiet%21_Dark_Rock_Top_Flow_%281%29.jpg",
+    "author": "Jacek Halicki",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "modifications": "Wikimedia thumbnail resized to 960px; content unaltered",
+    "width": 960,
+    "height": 675
+  }
+]
