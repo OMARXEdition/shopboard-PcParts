@@ -1,0 +1,5 @@
+# Netlify serves the site from the domain root, so override the GitHub Pages
+# base path (/Shopboard-PcParts/) set in vite.config.ts.
+[build]
+  command = "npm run build -- --base=/"
+  publish = "dist"
