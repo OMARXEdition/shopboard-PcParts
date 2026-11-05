@@ -58,3 +58,19 @@ browser checks separately and report them as pending if tooling is blocked.
 - The declared lint-tool dependency tree initially reported twelve moderate audit findings from minimatch. A documented package override selects patched minimatch 11.0.1; npm updates the lockfile.
 - Original pixel SVG illustrations were XML-validated; a test checks every product's shipped image path.
 - Browser screenshots, mobile overflow measurements, actual font appearance, and keyboard focus behavior require visual browser verification. Browser tooling was unavailable in the host session; these checks are not claimed as passed.
+
+## Bug 1: Netlify deployment shows a blank white page
+
+- **What I saw:** https://pcpartshop.netlify.app/ rendered an empty page.
+- **Type:** runtime (deployment configuration)
+- **How I found it:** Network request inspection with curl. The served HTML
+  referenced `/Shopboard-PcParts/assets/index-*.js` and `.css`, and requests
+  under `/Shopboard-PcParts/assets/` returned 404, so React never mounted.
+- **Cause:** `vite.config.ts` hardcoded `base: '/Shopboard-PcParts/'`, which is
+  correct for GitHub Pages but Netlify serves `dist` from the domain root.
+- **Fix:** `vite.config.ts` now uses `/` when `NETLIFY=true` (set by Netlify
+  builds) and keeps `/Shopboard-PcParts/` otherwise.
+- **Did I use AI? For what?** Yes, an AI agent diagnosed the 404s and made the fix.
+- **Verification:** lint, format check, typecheck, and tests (20/20) pass. The
+  next Netlify deploy still needs a browser check at 360 px and desktop; the
+  React DevTools inspection is pending.
