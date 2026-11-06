@@ -19,9 +19,12 @@ Keep this repository separate from the original Shopboard project.
 
 ## Architecture and UI
 
-- Keep feature components, logic, state, tests, and types grouped in `src/modules/`; app wiring belongs in `src/app/` and reusable infrastructure in `src/shared/`.
+- Put each feature in one `src/modules/<feature>/` folder with its React components, state, API code, logic, and types. Keep its tests in `tests/`; do not create a second folder for that feature under `src/components/`.
+- Use `src/components/` for reusable or app-wide UI that has no feature module: `home/`, `layout/`, `notification/`, and `ui/`. Keep a hook used only by one of these components beside it. Put a component used only by a feature in that feature's module.
+- Keep `src/shared/` for non-visual, feature-neutral helpers. Shared code must not import a feature module. Modules may directly import another module's public types or components when needed, but avoid circular imports; move code to shared only when it is genuinely feature-neutral.
+- Keep `src/main.tsx` limited to starting React and importing global styles; `src/app/` composes features and app-wide UI. Use PascalCase `.tsx` names for components and `use*.ts` or `use*.tsx` for hooks. Keep the current `src/styles.css` until a stylesheet migration is explicitly requested.
 - React components own UI rendering. Pure logic, data validation, and reducers must not query or mutate the DOM.
-- Fetch product data through the shared API boundary; never hardcode the catalog in JSX or silently replace a failed request with another catalog.
+- Fetch product data through the feature-neutral client in `src/shared/api-client.ts`; keep product parsing, validation, and loading in `src/modules/catalog/`. Never hardcode the catalog in JSX or silently replace a failed request with another catalog.
 - Validate external JSON at runtime. Resolve API and image URLs relative to Vite's base so GitHub Pages subpaths work.
 - Keep product IDs stable. Store only IDs and positive integer quantities; derive names and prices from the loaded catalog. Calculate money in cents.
 - Keep effects and event handling safe under React Strict Mode. One action must produce one cart update.
@@ -54,6 +57,6 @@ in package.json. CI installs locked dependencies and deploys only dist.
 
 ## Decorative motion
 
-- Keep the shared pointer-reactive hero background decorative (`aria-hidden` and `pointer-events: none`). Coalesce pointer input through requestAnimationFrame rather than updating React state per movement.
+- Keep the pointer-reactive hero background decorative (`aria-hidden` and `pointer-events: none`). Coalesce pointer input through requestAnimationFrame rather than updating React state per movement.
 - Disable movement for reduced motion and coarse pointers, reset on pointer exit/blur, and remove listeners/cancel queued frames on cleanup. Preserve keyboard operation and static fallback visuals.
 - Use local licensed real hardware photographs for products and original pixel artwork for the hero. Preserve retro pixel decoration separately; record source, author, license and any resizing, with visible photo credits.
