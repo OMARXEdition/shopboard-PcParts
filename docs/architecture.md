@@ -3,10 +3,10 @@
 ## Module boundaries
 
 - `src/app/`: page composition and provider wiring.
-- `src/modules/catalog/`: product types, immutable search/filter/sort logic, catalog and product-card components.
+- `src/modules/catalog/`: product types, API validation and loading, immutable search/filter/sort logic, product imagery, credits and catalog components.
 - `src/modules/cart/`: cart reducer, persistence, selectors and cart UI.
-- `src/modules/product-detail/`: the selected-product dialog and specifications.
-- `src/shared/`: API validation boundary, money formatting, one-component UI files and reusable hooks.
+- `src/modules/product-detail/`: selected-product state, dialog, feature types and specification rendering. Details consume the selected catalog product; they do not issue a duplicate request.
+- `src/shared/`: feature-neutral JSON request client and utilities used across features, such as money formatting and accessible modal behavior.
 - `public/data/products.json`: the sole catalog source, fetched over HTTP.
 - `public/photos/`: real, licensed category photographs and source metadata; `public/art/` contains the original pixel hero and logo.
 
@@ -16,10 +16,11 @@ application logic should not.
 
 ## Data flow
 
-The application requests the JSON through the shared fetch boundary. Runtime
-validation establishes the typed product catalog. Loading, success, empty and
-error are distinct UI states; retry starts a new request. Abort or ignore stale
-requests so Strict Mode and unmounts do not produce outdated state updates.
+The catalog feature requests JSON through the shared, feature-neutral API client.
+Catalog API code validates unknown JSON before creating typed Product records.
+Catalog loading, success, empty and error are distinct UI states; retry starts a
+new request. Abort stale requests so Strict Mode and unmounts do not produce
+outdated state updates. The application composes catalog and cart features.
 
 Search and category filtering operate on derived copies. Sorting changes the
 view, never the source catalog. Default order is the original JSON order.

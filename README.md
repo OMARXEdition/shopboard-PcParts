@@ -46,28 +46,31 @@ main (StrictMode)
          ├─ Catalog → ProductCard → WindowBar, ProductImage
          ├─ Footer → PhotoCredits
          ├─ ProductDetails → Modal, ProductImage (when selected)
+         │  └─ useProductDetails
          ├─ CartDrawer → Modal, ProductImage (when open)
          └─ Toast
 ```
 
-| Component          | Props                                        | State and behavior                                                                                 |
-| ------------------ | -------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| App                | None                                         | Loaded products, fetch error, retry attempt; aborts stale requests.                                |
-| CartProvider       | products, children                           | Cart reducer state; restores and persists validated lines.                                         |
-| Store              | products                                     | Selected product and cart visibility; uses shared toast state.                                     |
-| Header             | openCart                                     | Reads cart count from context; no local state.                                                     |
-| Hero               | None                                         | Composes pixel artwork and pointer decoration; no local state.                                     |
-| Footer             | None                                         | Project text and photo attribution; no local state.                                                |
-| Catalog            | products, onView, onAdd                      | Search, selected category and sort order; derives visible products.                                |
-| ProductCard        | product, position, onView, onAdd             | Stateless card; callbacks request details or add.                                                  |
-| ProductDetails     | product, onClose, onAdd                      | Stateless selected-product content inside Modal.                                                   |
-| CartDrawer         | products, onClose                            | Reads cart context; dispatches quantity, remove and clear actions.                                 |
-| Modal              | title, closeLabel, onClose, children, drawer | Dialog ref and effect manage modal opening, scroll lock and focus restoration.                     |
-| ProductImage       | path, alt, className                         | Failed image path selects an accessible fallback.                                                  |
-| WindowBar          | children                                     | Stateless decorative window title bar.                                                             |
-| Toast              | message                                      | Stateless live-region feedback.                                                                    |
-| PhotoCredits       | None                                         | Stateless source and license links.                                                                |
-| ReactiveBackground | None                                         | Element ref; usePointerBackground manages listeners and queued frames without React pointer state. |
+| Component          | Props                                        | State and behavior                                                                             |
+| ------------------ | -------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| App                | None                                         | Composes catalog state with cart and store features.                                           |
+| CartProvider       | products, children                           | Cart reducer state; restores and persists validated lines.                                     |
+| Store              | products                                     | Cart visibility; composes product detail selection and shared toast state.                     |
+| Header             | openCart                                     | Reads cart count from context; no local state.                                                 |
+| Hero               | None                                         | Composes pixel artwork and pointer decoration; no local state.                                 |
+| Footer             | None                                         | Project text and photo attribution; no local state.                                            |
+| Catalog            | products, onView, onAdd                      | Search, selected category and sort order; derives visible products.                            |
+| ProductCard        | product, position, onView, onAdd             | Stateless card; callbacks request details or add.                                              |
+| ProductDetails     | product, onClose, onAdd                      | Stateless selected-product content inside Modal.                                               |
+| ProductSpecs       | specs                                        | Renders the selected product's specification list.                                             |
+| useProductDetails  | None                                         | Owns selected-product state and open/close actions.                                            |
+| CartDrawer         | products, onClose                            | Reads cart context; dispatches quantity, remove and clear actions.                             |
+| Modal              | title, closeLabel, onClose, children, drawer | Dialog ref and effect manage modal opening, scroll lock and focus restoration.                 |
+| ProductImage       | path, alt, className                         | Catalog-owned photo renderer; failed paths select an accessible fallback.                      |
+| WindowBar          | children                                     | Stateless decorative window title bar.                                                         |
+| Toast              | message                                      | Stateless live-region feedback.                                                                |
+| PhotoCredits       | None                                         | Catalog photo source and license links, rendered in the footer.                                |
+| ReactiveBackground | None                                         | App hero decoration; its hook manages listeners and queued frames without React pointer state. |
 
 `useCart` exposes the shared context. `useToast` owns message state and dismissal
 timing. `usePointerBackground` coalesces pointer events into animation frames,
@@ -76,17 +79,18 @@ use stable product or particle IDs rather than array indexes.
 
 ## Modules and data flow
 
-- `src/app/`: application loading, composition, header, hero, store and footer.
-- `src/modules/catalog/`: product contracts, immutable search/filter/sort, catalog and cards.
+- `src/app/`: application composition, header, hero decoration, store and footer.
+- `src/modules/catalog/`: product contracts, API and loading, immutable search/filter/sort, photos, credits, catalog and cards.
 - `src/modules/cart/`: provider, context, hook, pure reducer and cart UI.
-- `src/modules/product-detail/`: selected-product dialog content.
-- `src/shared/`: one component per file, reusable hooks, API validation, money formatting and photo credits.
+- `src/modules/product-detail/`: selected-product state, dialog, feature types and specification rendering; it consumes the catalog record rather than fetching the product again.
+- `src/shared/`: feature-neutral JSON request client and utilities shared by multiple features.
 - `public/data/products.json`: sole catalog source; fetched over HTTP rather than imported or hardcoded in JSX.
 - `public/photos/`: eight licensed category photographs and their source metadata.
 - `public/art/`: pixel hero and logo.
 - `tests/`: domain, asset and React interaction checks.
 
-The API boundary validates unknown JSON before constructing Product values. Failures
+The shared API client handles HTTP requests and errors without importing a feature.
+Catalog API code validates unknown JSON before constructing Product values. Failures
 show retry instead of a substitute catalog. Search and sorting operate on copies;
 Default restores JSON order. The cart stores only IDs and positive whole quantities,
 derives product information from the loaded catalog, and totals integer cents.
