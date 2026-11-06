@@ -45,8 +45,7 @@ main (StrictMode)
          ├─ Hero → ReactiveBackground
          ├─ Catalog → ProductCard → WindowBar, ProductImage
          ├─ Footer → PhotoCredits
-         ├─ ProductDetails → Modal, ProductImage (when selected)
-         │  └─ useProductDetails
+         ├─ ProductDetails → Modal, ProductImage, ProductSpecs (when selected)
          ├─ CartDrawer → Modal, ProductImage (when open)
          └─ Toast
 ```
@@ -72,8 +71,9 @@ main (StrictMode)
 | PhotoCredits       | None                                         | Catalog photo source and license links, rendered in the footer.                                |
 | ReactiveBackground | None                                         | App hero decoration; its hook manages listeners and queued frames without React pointer state. |
 
-`useCart` exposes the shared context. `useToast` owns message state and dismissal
-timing. `usePointerBackground` coalesces pointer events into animation frames,
+`useCart` exposes the shared context. `Store` uses `useProductDetails` for
+selection, while `App` uses `useCatalog` for loading and retry. `useToast`
+owns message state and dismissal timing. `usePointerBackground` coalesces pointer events into animation frames,
 respects reduced motion and coarse pointers, and cleans up listeners. List items
 use stable product or particle IDs rather than array indexes.
 
