@@ -4,7 +4,8 @@
 
 Read AGENTS.md and Design.md before changing the application. Keep each React
 component in its own file, feature state near its owner, and reusable controls in
-shared modules. Pass typed props and callbacks; derive filtered lists and totals
+`src/components/ui/`. Keep page, layout and notification pieces in their
+`src/components/` subfolders. Pass typed props and callbacks; derive filtered lists and totals
 rather than copying them into state. Use the installed Vercel React best-practices
 and composition-pattern skills in .claude/skills/ when relevant. Add no other skill
 kits or generated agent plans to the repository.

@@ -5,11 +5,11 @@ import { Catalog } from '../modules/catalog/Catalog'
 import { CartDrawer } from '../modules/cart/CartDrawer'
 import { ProductDetails } from '../modules/product-detail/ProductDetails'
 import { useProductDetails } from '../modules/product-detail/useProductDetails'
-import { Toast } from '../shared/Toast'
-import { useToast } from '../shared/useToast'
-import { Header } from './Header'
-import { Hero } from './Hero'
-import { Footer } from './Footer'
+import { Toast } from '../components/notification/Toast'
+import { useToast } from '../components/notification/useToast'
+import { Header } from '../components/layout/Header'
+import { Hero } from '../components/home/Hero'
+import { Footer } from '../components/layout/Footer'
 export interface StoreProps {
   products: Product[]
 }

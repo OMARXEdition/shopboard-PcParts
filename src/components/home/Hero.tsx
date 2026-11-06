@@ -1,4 +1,4 @@
-import { apiUrl } from '../shared/api-client'
+import { apiUrl } from '../../shared/api-client'
 import { ReactiveBackground } from './ReactiveBackground'
 export function Hero() {
   return (

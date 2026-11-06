@@ -1,4 +1,4 @@
-import { Modal } from '../../shared/Modal'
+import { Modal } from '../../components/ui/Modal'
 import { ProductImage } from '../catalog/ProductImage'
 import { formatPrice } from '../../shared/format'
 import type { ProductDetailsProps } from './product-detail.types'

@@ -13,15 +13,15 @@ function filesAt(path: string): string[] {
 }
 it('uses separate typed reusable components and keeps hooks separate', () => {
   for (const file of [
-    'src/app/Header.tsx',
-    'src/app/Hero.tsx',
-    'src/app/Footer.tsx',
+    'src/components/layout/Header.tsx',
+    'src/components/home/Hero.tsx',
+    'src/components/layout/Footer.tsx',
     'src/app/Store.tsx',
     'src/modules/catalog/ProductImage.tsx',
-    'src/shared/Modal.tsx',
+    'src/components/ui/Modal.tsx',
     'src/modules/catalog/WindowBar.tsx',
     'src/modules/catalog/ProductCard.tsx',
-    'src/shared/useToast.ts',
+    'src/components/notification/useToast.ts',
     'src/modules/cart/useCart.ts',
   ])
     expect(existsSync(file), file).toBe(true)
@@ -67,7 +67,9 @@ it('contains no explicit any, type assertions or non-null assertions in applicat
   expect(violations).toEqual([])
 })
 it('uses pixel art only in the hero and real category photos in the catalog', () => {
-  expect(readFileSync('src/app/Hero.tsx', 'utf8')).toContain('art/hero.svg')
+  expect(readFileSync('src/components/home/Hero.tsx', 'utf8')).toContain(
+    'art/hero.svg',
+  )
   const products: unknown = JSON.parse(
     readFileSync('public/data/products.json', 'utf8'),
   )

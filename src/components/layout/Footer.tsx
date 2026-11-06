@@ -1,5 +1,5 @@
-import { apiUrl } from '../shared/api-client'
-import { PhotoCredits } from '../modules/catalog/PhotoCredits'
+import { apiUrl } from '../../shared/api-client'
+import { PhotoCredits } from '../../modules/catalog/PhotoCredits'
 export function Footer() {
   return (
     <footer className="site-footer" id="about">

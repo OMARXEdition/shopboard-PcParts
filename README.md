@@ -79,11 +79,12 @@ use stable product or particle IDs rather than array indexes.
 
 ## Modules and data flow
 
-- `src/app/`: application composition, header, hero decoration, store and footer.
+- `src/app/`: application composition and feature wiring.
+- `src/components/`: home, layout, notification and reusable UI pieces that do not belong to a feature module.
 - `src/modules/catalog/`: product contracts, API and loading, immutable search/filter/sort, photos, credits, catalog and cards.
 - `src/modules/cart/`: provider, context, hook, pure reducer and cart UI.
 - `src/modules/product-detail/`: selected-product state, dialog, feature types and specification rendering; it consumes the catalog record rather than fetching the product again.
-- `src/shared/`: feature-neutral JSON request client and utilities shared by multiple features.
+- `src/shared/`: feature-neutral JSON request client and non-visual utilities shared by multiple features.
 - `public/data/products.json`: sole catalog source; fetched over HTTP rather than imported or hardcoded in JSX.
 - `public/photos/`: eight licensed category photographs and their source metadata.
 - `public/art/`: pixel hero and logo.

@@ -1,5 +1,5 @@
-import { apiUrl } from '../shared/api-client'
-import { useCart } from '../modules/cart/useCart'
+import { apiUrl } from '../../shared/api-client'
+import { useCart } from '../../modules/cart/useCart'
 export interface HeaderProps {
   openCart: () => void
 }

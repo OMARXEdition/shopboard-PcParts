@@ -3,16 +3,17 @@
 ## Module boundaries
 
 - `src/app/`: page composition and provider wiring.
+- `src/components/`: UI without a feature module, grouped under `home/`, `layout/`, `notification/` and `ui/`. Home pointer behavior and notification timing live beside their components.
 - `src/modules/catalog/`: product types, API validation and loading, immutable search/filter/sort logic, product imagery, credits and catalog components.
 - `src/modules/cart/`: cart reducer, persistence, selectors and cart UI.
 - `src/modules/product-detail/`: selected-product state, dialog, feature types and specification rendering. Details consume the selected catalog product; they do not issue a duplicate request.
-- `src/shared/`: feature-neutral JSON request client and utilities used across features, such as money formatting and accessible modal behavior.
+- `src/shared/`: feature-neutral JSON request client and non-visual utilities used across features, such as money formatting.
 - `public/data/products.json`: the sole catalog source, fetched over HTTP.
 - `public/photos/`: real, licensed category photographs and source metadata; `public/art/` contains the original pixel hero and logo.
 
-Keep components near the feature behavior they render. Pure functions and reducers
-have no DOM access. Shared UI may use DOM APIs for focus and dialog behavior;
-application logic should not.
+Keep feature components near the behavior they render. Pure functions and reducers
+have no DOM access. Reusable UI in `src/components/ui/` may use DOM APIs for focus
+and dialog behavior; application logic should not.
 
 ## Data flow
 

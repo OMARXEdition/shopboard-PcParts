@@ -1,6 +1,6 @@
 import type { Product } from '../catalog/catalog.types'
 import { useCart } from './useCart'
-import { Modal } from '../../shared/Modal'
+import { Modal } from '../../components/ui/Modal'
 import { ProductImage } from '../catalog/ProductImage'
 import { formatPrice } from '../../shared/format'
 export interface CartDrawerProps {
