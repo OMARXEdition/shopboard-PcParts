@@ -17,14 +17,30 @@ it('uses separate typed reusable components and keeps hooks separate', () => {
     'src/app/Hero.tsx',
     'src/app/Footer.tsx',
     'src/app/Store.tsx',
-    'src/shared/ProductImage.tsx',
+    'src/modules/catalog/ProductImage.tsx',
     'src/shared/Modal.tsx',
-    'src/shared/WindowBar.tsx',
+    'src/modules/catalog/WindowBar.tsx',
     'src/modules/catalog/ProductCard.tsx',
     'src/shared/useToast.ts',
     'src/modules/cart/useCart.ts',
   ])
     expect(existsSync(file), file).toBe(true)
+})
+it('keeps feature data and product UI in their owning modules', () => {
+  for (const file of [
+    'src/modules/catalog/api.ts',
+    'src/modules/catalog/useCatalog.ts',
+    'src/modules/catalog/ProductImage.tsx',
+    'src/modules/catalog/PhotoCredits.tsx',
+    'src/modules/catalog/photo-credits.ts',
+    'src/modules/product-detail/product-detail.types.ts',
+    'src/modules/product-detail/ProductSpecs.tsx',
+    'src/modules/product-detail/useProductDetails.ts',
+    'src/shared/api-client.ts',
+  ])
+    expect(existsSync(file), file).toBe(true)
+  for (const file of filesAt('src/shared'))
+    expect(readFileSync(file, 'utf8')).not.toMatch(/\.\.\/modules\//)
 })
 it('contains no explicit any, type assertions or non-null assertions in application TypeScript', () => {
   const violations: string[] = []

@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
-import { parseProducts } from '../src/shared/api'
+import { parseProducts } from '../src/modules/catalog/api'
 describe('shipped catalog assets', () => {
   it('ships sixteen validated products across eight categories with matching local photographs', () => {
     const products = parseProducts(
@@ -17,7 +17,7 @@ describe('shipped catalog assets', () => {
     }
   })
 })
-import { photoCredits } from '../src/shared/photo-credits'
+import { photoCredits } from '../src/modules/catalog/photo-credits'
 it('credits every shipped category photo with author, source, license and resize details', () => {
   const products = parseProducts(
     JSON.parse(readFileSync('public/data/products.json', 'utf8')),

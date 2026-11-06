@@ -1,6 +1,7 @@
 import type { Product } from '../src/modules/catalog/catalog.types'
 import { describe, it, expect, vi } from 'vitest'
-import { parseProducts, fetchProducts, assetUrl } from '../src/shared/api'
+import { parseProducts, fetchProducts } from '../src/modules/catalog/api'
+import { apiUrl } from '../src/shared/api-client'
 import { selectProducts } from '../src/modules/catalog/catalog.logic'
 import {
   cartReducer,
@@ -20,7 +21,7 @@ const item: Product = {
 describe('catalog boundary', () => {
   it('validates products and paths', () => {
     expect(parseProducts([item])).toEqual([item])
-    expect(assetUrl('photos/cpu.jpg')).toBe('/Shopboard-PcParts/photos/cpu.jpg')
+    expect(apiUrl('photos/cpu.jpg')).toBe('/Shopboard-PcParts/photos/cpu.jpg')
   })
   it('rejects malformed, duplicate and unsafe data', () => {
     for (const data of [

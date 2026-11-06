@@ -1,5 +1,5 @@
-import { assetUrl } from '../shared/api'
-import { ReactiveBackground } from '../shared/ReactiveBackground'
+import { apiUrl } from '../shared/api-client'
+import { ReactiveBackground } from './ReactiveBackground'
 export function Hero() {
   return (
     <>
@@ -42,7 +42,7 @@ export function Hero() {
             </span>
             <img
               className="hero-art"
-              src={assetUrl('art/hero.svg')}
+              src={apiUrl('art/hero.svg')}
               alt="Detailed pixel-art CRT desktop computer, keyboard, and retro case"
             />
             <div className="hero-tag">

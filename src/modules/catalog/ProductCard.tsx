@@ -1,6 +1,6 @@
 import type { Product } from './catalog.types'
-import { WindowBar } from '../../shared/WindowBar'
-import { ProductImage } from '../../shared/ProductImage'
+import { WindowBar } from './WindowBar'
+import { ProductImage } from './ProductImage'
 import { formatPrice } from '../../shared/format'
 export interface ProductCardProps {
   product: Product

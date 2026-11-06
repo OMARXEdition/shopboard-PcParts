@@ -1,10 +1,12 @@
-import { categories } from '../modules/catalog/catalog.types'
-import type { Product } from '../modules/catalog/catalog.types'
-export const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
+import { categories } from './catalog.types'
+import type { Product } from './catalog.types'
+import { requestJson } from '../../shared/api-client'
+
 const record = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null
 const text = (value: unknown): value is string =>
   typeof value === 'string' && value.trim().length > 0
+
 function isProduct(value: unknown): value is Product {
   if (!record(value)) return false
   return (
@@ -25,6 +27,7 @@ function isProduct(value: unknown): value is Product {
     )
   )
 }
+
 export function parseProducts(data: unknown): Product[] {
   if (!Array.isArray(data))
     throw new Error('The product catalog must be a JSON array.')
@@ -41,13 +44,12 @@ export function parseProducts(data: unknown): Product[] {
   }
   return products
 }
+
 export async function fetchProducts(
   signal?: AbortSignal,
   fetcher: typeof fetch = fetch,
 ): Promise<Product[]> {
-  const response = await fetcher(assetUrl('data/products.json'), { signal })
-  if (!response.ok)
-    throw new Error(`Catalog request failed (${response.status}).`)
-  const data: unknown = await response.json()
-  return parseProducts(data)
+  return parseProducts(
+    await requestJson('data/products.json', { signal, fetcher }),
+  )
 }

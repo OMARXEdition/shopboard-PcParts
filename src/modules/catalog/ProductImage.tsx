@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { assetUrl } from './api'
+import { apiUrl } from '../../shared/api-client'
 export interface ProductImageProps {
   path: string
   alt: string
@@ -14,7 +14,7 @@ export function ProductImage({ path, alt, className }: ProductImageProps) {
   ) : (
     <img
       className={className}
-      src={assetUrl(path)}
+      src={apiUrl(path)}
       alt={alt}
       loading="lazy"
       onError={() => setFailedPath(path)}

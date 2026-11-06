@@ -4,6 +4,7 @@ import { useCart } from '../modules/cart/useCart'
 import { Catalog } from '../modules/catalog/Catalog'
 import { CartDrawer } from '../modules/cart/CartDrawer'
 import { ProductDetails } from '../modules/product-detail/ProductDetails'
+import { useProductDetails } from '../modules/product-detail/useProductDetails'
 import { Toast } from '../shared/Toast'
 import { useToast } from '../shared/useToast'
 import { Header } from './Header'
@@ -15,7 +16,7 @@ export interface StoreProps {
 export function Store({ products }: StoreProps) {
   const cart = useCart()
   const [cartOpen, setCartOpen] = useState(false)
-  const [selected, setSelected] = useState<Product | null>(null)
+  const details = useProductDetails()
   const toast = useToast()
   function add(p: Product) {
     if (cart.add(p.id)) toast.notify(p.name + ' added to your cart.')
@@ -26,13 +27,13 @@ export function Store({ products }: StoreProps) {
       <Header openCart={() => setCartOpen(true)} />
       <main>
         <Hero />
-        <Catalog products={products} onView={setSelected} onAdd={add} />
+        <Catalog products={products} onView={details.open} onAdd={add} />
       </main>
       <Footer />
-      {selected && (
+      {details.product && (
         <ProductDetails
-          product={selected}
-          onClose={() => setSelected(null)}
+          product={details.product}
+          onClose={details.close}
           onAdd={add}
         />
       )}

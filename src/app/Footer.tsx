@@ -1,11 +1,11 @@
-import { assetUrl } from '../shared/api'
-import { PhotoCredits } from '../shared/PhotoCredits'
+import { apiUrl } from '../shared/api-client'
+import { PhotoCredits } from '../modules/catalog/PhotoCredits'
 export function Footer() {
   return (
     <footer className="site-footer" id="about">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <img src={assetUrl('art/logo.svg')} alt="" />
+          <img src={apiUrl('art/logo.svg')} alt="" />
           <h2>
             LET'S BUILD
             <br />

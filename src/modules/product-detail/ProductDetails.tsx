@@ -1,12 +1,8 @@
-import type { Product } from '../catalog/catalog.types'
 import { Modal } from '../../shared/Modal'
-import { ProductImage } from '../../shared/ProductImage'
+import { ProductImage } from '../catalog/ProductImage'
 import { formatPrice } from '../../shared/format'
-export interface ProductDetailsProps {
-  product: Product
-  onClose: () => void
-  onAdd: (p: Product) => void
-}
+import type { ProductDetailsProps } from './product-detail.types'
+import { ProductSpecs } from './ProductSpecs'
 export function ProductDetails({
   product,
   onClose,
@@ -27,14 +23,7 @@ export function ProductDetails({
         <div>
           <p className="category-label">{product.category}</p>
           <p>{product.description}</p>
-          <dl className="spec-list">
-            {product.specs.map((s) => (
-              <div key={s.label}>
-                <dt>{s.label}</dt>
-                <dd>{s.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <ProductSpecs specs={product.specs} />
           <p className="price numeric">{formatPrice(product.priceCents)}</p>
           <button className="primary-button" onClick={() => onAdd(product)}>
             + Add to cart

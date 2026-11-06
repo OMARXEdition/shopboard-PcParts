@@ -1,4 +1,4 @@
-import { assetUrl } from '../shared/api'
+import { apiUrl } from '../shared/api-client'
 import { useCart } from '../modules/cart/useCart'
 export interface HeaderProps {
   openCart: () => void
@@ -9,7 +9,7 @@ export function Header({ openCart }: HeaderProps) {
     <header className="site-header">
       <div className="container">
         <a href="#home" className="brand" aria-label="Shopboard PC Parts home">
-          <img className="brand-icon" src={assetUrl('art/logo.svg')} alt="" />
+          <img className="brand-icon" src={apiUrl('art/logo.svg')} alt="" />
           <span>
             SHOPBOARD<small>PC PARTS & POSSIBILITIES</small>
           </span>

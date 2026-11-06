@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { render, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import { ReactiveBackground } from '../src/shared/ReactiveBackground'
+import { ReactiveBackground } from '../src/app/ReactiveBackground'
 describe('reactive decorative background', () => {
   it('coalesces pointer work and resets on leave with Strict Mode cleanup', () => {
     vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: false }))
