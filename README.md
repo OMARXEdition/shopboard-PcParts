@@ -1,23 +1,84 @@
-# Shopboard-PcParts
+# ShopBoard
 
-A retro PC-parts demo storefront built with React, TypeScript and Vite. Search,
-filter and sort the catalog, inspect product details, and keep a cart across
-refreshes. The hero uses an original pixel-art computer; products use licensed
-real hardware photographs.
+A six-page fashion storefront for the [ShopBoard course API](https://shopboard-api.vercel.app/). It displays all 12 API products with locally bundled, credited photographs, loads each product page by ID, keeps one cart across routes and refreshes, and provides a validated demo checkout. No payment is taken or order created.
 
-USD prices, names and specifications are sample data. Photographs represent
-hardware categories, not exact fictional models. There are no accounts, payments,
-real orders, backend service, or compatibility checker.
-
-## Run and check
+## Run
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open the printed URL, including `/Shopboard-PcParts/`. On Windows use npm.cmd or
-npx.cmd if PowerShell blocks the .ps1 launchers.
+Vite prints the local URL. Routes use a hash (`#/products/1`) so a refreshed product page works on static hosting. On Windows, use `npm.cmd` if PowerShell blocks npm's `.ps1` launcher.
+
+The default API base is `https://shopboard-api.vercel.app`. To check API states, set `VITE_SHOPBOARD_API_BASE` before starting Vite:
+
+| State   | API base                                      |
+| ------- | --------------------------------------------- |
+| Normal  | `https://shopboard-api.vercel.app`            |
+| Delayed | `https://shopboard-api.vercel.app/delay/3000` |
+| Failed  | `https://shopboard-api.vercel.app/fail/500`   |
+| Empty   | `https://shopboard-api.vercel.app/empty`      |
+
+In PowerShell, for example: `$env:VITE_SHOPBOARD_API_BASE='https://shopboard-api.vercel.app/fail/500'; npm.cmd run dev`. Restart Vite after changing the variable. The app calls `/api/products` and `/api/products/:id` under that base. Clear the variable to return to normal mode.
+
+The photos are separate from the course API: `public/data/product-photos.json` is fetched as a local JSON endpoint and maps stable product IDs to files in `public/photos/`. The JSON contains paths and credits, not image bytes. The API remains authoritative for product data. Images are representative of the product category, and their authors and licenses appear below them. See [asset sources](docs/asset-sources.md).
+
+## Routes
+
+| Route            | Page     | Data                                                   |
+| ---------------- | -------- | ------------------------------------------------------ |
+| `#/`             | Home     | No API request                                         |
+| `#/products`     | Catalog  | API product list; local search, category and sort      |
+| `#/products/:id` | Product  | API request for that ID                                |
+| `#/cart`         | Cart     | Shared cart; product list for current names and prices |
+| `#/checkout`     | Checkout | Shared cart and validated demo form                    |
+| `#/about`        | About    | No API request                                         |
+| Any other route  | 404      | No API request                                         |
+
+Page modules are imported only when their route opens. Suspense displays loading inside the shared layout. A retryable Error Boundary handles data failures. The catalog distinguishes an empty API result from a search with no matches.
+
+## Component tree and state
+
+```text
+App (src/app/App.tsx; no props)
+`-- HashRouter
+    `-- CartProvider (src/modules/cart/CartProvider.tsx; children)
+        |-- Header (src/components/layout/Header.tsx; no props)
+        |-- main
+        |   `-- RetryBoundary (src/components/ui/RetryBoundary.tsx; children, onRetry)
+        |       `-- Suspense (fallback)
+        |           `-- Routes (one page at a time)
+        |               |-- HomePage (src/app/pages/HomePage.tsx; no props)
+        |               |-- CatalogPage (src/modules/catalog/CatalogPage.tsx; no props)
+        |               |   |-- PageHeading (src/components/ui/PageHeading.tsx; title, eyebrow?, description?)
+        |               |   |-- EmptyState (src/components/ui/EmptyState.tsx; title?, message, children?; when empty/no match)
+        |               |   `-- ProductCard (src/modules/catalog/ProductCard.tsx; product, photo?)
+        |               |       `-- ProductPhotoView (src/modules/catalog/ProductPhotoView.tsx; photo, loading?)
+        |               |-- ProductPage (src/modules/product-detail/ProductPage.tsx; no props)
+        |               |   `-- ProductContent (src/modules/product-detail/ProductContent.tsx; id)
+        |               |       `-- ProductPhotoView (photo, loading)
+        |               |-- CartPage (src/modules/cart/CartPage.tsx; no props)
+        |               |   |-- PageHeading (title)
+        |               |   |-- EmptyState (message, children; when empty)
+        |               |   `-- CartContents (src/modules/cart/CartContents.tsx; no props, when cart has lines)
+        |               |-- CheckoutPage (src/modules/checkout/CheckoutPage.tsx; no props)
+        |               |   |-- PageHeading (title, description)
+        |               |   |-- EmptyState (message, children; when empty)
+        |               |   `-- CheckoutForm (src/modules/checkout/CheckoutForm.tsx; no props, when cart has lines)
+        |               |       `-- shadcn FieldGroup/Field/FieldLabel/FieldError,
+        |               |           Input, Button (src/components/ui/; DOM and validation props)
+        |               |-- AboutPage (src/app/pages/AboutPage.tsx; no props)
+        |               |   `-- PageHeading (title)
+        |               `-- NotFoundPage (src/app/pages/NotFoundPage.tsx; no props)
+        `-- Footer (src/components/layout/Footer.tsx; no props)
+```
+
+`CartProvider` owns the only cart state: product IDs and positive integer quantities. Its actions add, decrease, remove and clear; count is derived. Storage is validated when restored. `CatalogPage` owns search, category and sort; the visible list is derived. `CheckoutForm` owns form state through react-hook-form and one Zod schema, plus local demo-completion state. `RetryBoundary` owns error and retry version. Product and photo promises are cached in the catalog module so React Suspense can read stable promises and start both requests together. Product names, stock and prices come from API data, with money calculated in cents. `Header`, `Footer`, `ProductCard`, `ProductPhotoView`, `HomePage`, `AboutPage` and `NotFoundPage` hold no application state.
+
+The Day 2 bug record is in `debugging-log.md`; the five Day 4 lab findings are in `debug-lab-log.md`. Each entry marks whether it came from source inspection or a live observation.
+
+## Checks
 
 ```sh
 npm run lint
@@ -28,98 +89,19 @@ npm run build
 npm run preview
 ```
 
-`npm run format` applies Prettier. npm generates the lockfile. Husky runs
-lint-staged and typecheck before a commit; lint-staged settings are in package.json.
+The pre-commit hook runs lint-staged and typecheck. ESLint rejects explicit `any`, type assertions and non-null assertions. `npm run lint` allows zero warnings. Use the production preview at 360 px and desktop to inspect routing, keyboard access, API requests and Console output before submission.
 
-## Component tree, props and state
+## Structure
 
-Each named component has its own file. Prop-bearing components declare a named
-TypeScript props interface. Hooks contain reusable behavior without rendering.
+- `src/app/`: route composition and app-wide static pages.
+- `src/modules/catalog/`: API and photo-manifest validation, request cache, catalog, cards and photo rendering.
+- `public/data/product-photos.json` and `public/photos/`: local photo endpoint and image files.
+- `src/modules/product-detail/`: product-by-ID page.
+- `src/modules/cart/`: shared Context, reducer, storage and cart page.
+- `src/modules/checkout/`: demo form and its Zod schema.
+- `src/components/layout/`: shared header and footer.
+- `src/components/ui/`: shared retry boundary and shadcn/ui components.
+- `src/shared/`: feature-neutral request and money helpers.
+- `tests/`: behavior and API checks.
 
-```text
-main (StrictMode)
-└─ App
-   └─ CartProvider
-      └─ Store
-         ├─ Header
-         ├─ Hero → ReactiveBackground
-         ├─ Catalog → ProductCard → WindowBar, ProductImage
-         ├─ Footer → PhotoCredits
-         ├─ ProductDetails → Modal, ProductImage, ProductSpecs (when selected)
-         ├─ CartDrawer → Modal, ProductImage (when open)
-         └─ Toast
-```
-
-| Component          | Props                                        | State and behavior                                                                             |
-| ------------------ | -------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| App                | None                                         | Composes catalog state with cart and store features.                                           |
-| CartProvider       | products, children                           | Cart reducer state; restores and persists validated lines.                                     |
-| Store              | products                                     | Cart visibility; composes product detail selection and shared toast state.                     |
-| Header             | openCart                                     | Reads cart count from context; no local state.                                                 |
-| Hero               | None                                         | Composes pixel artwork and pointer decoration; no local state.                                 |
-| Footer             | None                                         | Project text and photo attribution; no local state.                                            |
-| Catalog            | products, onView, onAdd                      | Search, selected category and sort order; derives visible products.                            |
-| ProductCard        | product, position, onView, onAdd             | Stateless card; callbacks request details or add.                                              |
-| ProductDetails     | product, onClose, onAdd                      | Stateless selected-product content inside Modal.                                               |
-| ProductSpecs       | specs                                        | Renders the selected product's specification list.                                             |
-| useProductDetails  | None                                         | Owns selected-product state and open/close actions.                                            |
-| CartDrawer         | products, onClose                            | Reads cart context; dispatches quantity, remove and clear actions.                             |
-| Modal              | title, closeLabel, onClose, children, drawer | Dialog ref and effect manage modal opening, scroll lock and focus restoration.                 |
-| ProductImage       | path, alt, className                         | Catalog-owned photo renderer; failed paths select an accessible fallback.                      |
-| WindowBar          | children                                     | Stateless decorative window title bar.                                                         |
-| Toast              | message                                      | Stateless live-region feedback.                                                                |
-| PhotoCredits       | None                                         | Catalog photo source and license links, rendered in the footer.                                |
-| ReactiveBackground | None                                         | App hero decoration; its hook manages listeners and queued frames without React pointer state. |
-
-`useCart` exposes the shared context. `Store` uses `useProductDetails` for
-selection, while `App` uses `useCatalog` for loading and retry. `useToast`
-owns message state and dismissal timing. `usePointerBackground` coalesces pointer events into animation frames,
-respects reduced motion and coarse pointers, and cleans up listeners. List items
-use stable product or particle IDs rather than array indexes.
-
-## Modules and data flow
-
-- `src/app/`: application composition and feature wiring.
-- `src/components/`: home, layout, notification and reusable UI pieces that do not belong to a feature module.
-- `src/modules/catalog/`: product contracts, API and loading, immutable search/filter/sort, photos, credits, catalog and cards.
-- `src/modules/cart/`: provider, context, hook, pure reducer and cart UI.
-- `src/modules/product-detail/`: selected-product state, dialog, feature types and specification rendering; it consumes the catalog record rather than fetching the product again.
-- `src/shared/`: feature-neutral JSON request client and non-visual utilities shared by multiple features.
-- `public/data/products.json`: sole catalog source; fetched over HTTP rather than imported or hardcoded in JSX.
-- `public/photos/`: eight licensed category photographs and their source metadata.
-- `public/art/`: pixel hero and logo.
-- `tests/`: domain, asset and React interaction checks.
-
-The shared API client handles HTTP requests and errors without importing a feature.
-Catalog API code validates unknown JSON before constructing Product values. Failures
-show retry instead of a substitute catalog. Search and sorting operate on copies;
-Default restores JSON order. The cart stores only IDs and positive whole quantities,
-derives product information from the loaded catalog, and totals integer cents.
-Blocked or corrupt storage leaves an in-memory cart usable. Each part has a demo
-quantity limit of 999; controls and feedback explain the limit.
-
-## Guides and verification
-
-- [Design.md](Design.md): visual rules and font exceptions.
-- [AGENTS.md](AGENTS.md) and [CLAUDE.md](CLAUDE.md): project conventions and React lessons.
-- [Architecture](docs/architecture.md): boundaries and data flow.
-- [Asset sources](docs/asset-sources.md): retained artwork and photograph attribution.
-- [Debugging log](debugging-log.md) and [debug lab](debug-lab-log.md): observed issues and evidence.
-
-Only Vercel React best practices and composition patterns are installed under
-`.claude/skills/`. Vendored skill content is tooling documentation, not browser code.
-
-Inspect the production preview at mobile and desktop sizes, including image and
-JSON requests, dialog keyboard behavior and Console errors. React DevTools can
-confirm the component tree and the props/state listed above. These browser and
-DevTools checks must be reported as pending until actually performed; a passing
-jsdom test does not establish visual rendering or native focus behavior.
-
-## GitHub Pages
-
-The default build base is `/` for root-hosted sites such as Netlify. The GitHub Pages
-workflow overrides it with `/Shopboard-PcParts/` for the repository subpath.
-JSON, photographs and built assets resolve relative to the active base. The single deployment workflow installs locked
-dependencies, runs checks, builds, and uploads only dist. Product details use
-dialogs, so static hosting does not need client-side route rewriting. Publishing
-or pushing changes requires an explicit instruction.
+The orange pixel background is CSS decoration behind solid content panels. The single GitHub Pages workflow builds and publishes `dist`.

@@ -1,8 +1,8 @@
 # Debugging log
 
-Record real issues as they occur. No historical bugs are invented to fill this
-file. Shopboard's earlier lessons are documented in AGENTS.md, not presented as
-new observations in this project.
+This log includes observed problems from earlier ShopBoard work and the current
+fashion conversion. The older entries describe the project at the time of the
+bug; their PC-parts paths and fixtures are historical, not current features.
 
 ## Entry template
 
@@ -19,11 +19,6 @@ Copy this block for an actual observed bug and replace every placeholder:
 - **Did I use AI? For what?**
 - **Verification:** Command or browser scenario, result, and remaining limitations.
 ```
-
-## Verification boundary
-
-Automated checks do not establish that visual rendering was inspected. Record
-browser checks separately and report them as pending if tooling is blocked.
 
 ## Bug 1 — Prettier could not read its configuration
 
@@ -52,9 +47,17 @@ browser checks separately and report them as pending if tooling is blocked.
 - **Fix:** Make both initial Strict Mode requests fail in the fixture, then return success on Retry. Keep request cancellation in the application and retain Strict Mode tests.
 - **Did I use AI? For what?** Yes. AI created and corrected the fixture after observing the failure.
 
-## Verification ledger
+## Bug 4 — Delayed route test depended on navigation timing
 
-- Domain tests were observed failing before the API/cart/catalog implementations existed; React tests were observed failing before App existed.
-- The declared lint-tool dependency tree initially reported twelve moderate audit findings from minimatch. A documented package override selects patched minimatch 11.0.1; npm updates the lockfile.
-- Original pixel SVG illustrations were XML-validated; a test checks every product's shipped image path.
-- Browser screenshots, mobile overflow measurements, actual font appearance, and keyboard focus behavior require visual browser verification. Browser tooling was unavailable in the host session; these checks are not claimed as passed.
+- **What I saw:** The full test suite occasionally showed the home page when the delayed catalog test expected a loading status.
+- **Type:** logic (test fixture)
+- **How I found it:** The `delayed-page.test.tsx` run failed while other route tests passed.
+- **Cause:** `tests/delayed-page.test.tsx` clicked a route link and immediately checked the fallback; the test mixed hash navigation timing with the intended delayed-fetch scenario.
+- **Fix:** Start the test directly at `#/products`, hold the catalog request pending, and check that the shared header and footer remain visible during loading.
+- **Did I use AI? For what?** Yes. AI investigated the failing test, changed its setup, and reran the single test and full suite.
+- **Verification:** The isolated test and the full suite passed. This does not establish a visual browser check.
+
+## Verification boundary
+
+Automated checks do not establish that visual rendering, React DevTools, keyboard
+behavior, or the browser Console were inspected. Report these separately.

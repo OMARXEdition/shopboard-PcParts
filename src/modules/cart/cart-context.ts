@@ -3,7 +3,6 @@ import type { CartLine } from './cart.state'
 export interface CartContextValue {
   lines: CartLine[]
   count: number
-  totalCents: number
   add: (id: string) => boolean
   decrease: (id: string) => void
   remove: (id: string) => void

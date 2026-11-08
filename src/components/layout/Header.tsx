@@ -1,31 +1,26 @@
-import { apiUrl } from '../../shared/api-client'
+import { Link, NavLink } from 'react-router-dom'
 import { useCart } from '../../modules/cart/useCart'
-export interface HeaderProps {
-  openCart: () => void
-}
-export function Header({ openCart }: HeaderProps) {
+export function Header() {
   const cart = useCart()
   return (
     <header className="site-header">
       <div className="container">
-        <a href="#home" className="brand" aria-label="Shopboard PC Parts home">
-          <img className="brand-icon" src={apiUrl('art/logo.svg')} alt="" />
-          <span>
-            SHOPBOARD<small>PC PARTS & POSSIBILITIES</small>
-          </span>
-        </a>
+        <Link to="/" className="brand" aria-label="ShopBoard home">
+          SHOPBOARD
+        </Link>
         <nav className="nav-links" aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#catalog">The parts</a>
-          <a href="#about">About</a>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/products">Catalog</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/checkout">Checkout</NavLink>
         </nav>
-        <button
+        <Link
           className="cart-trigger"
-          onClick={openCart}
-          aria-label={`Open cart, ${cart.count} items`}
+          to="/cart"
+          aria-label={`Cart, ${cart.count} items`}
         >
-          ▧ Cart <span className="numeric">{cart.count}</span>
-        </button>
+          Cart <span className="numeric">{cart.count}</span>
+        </Link>
       </div>
     </header>
   )

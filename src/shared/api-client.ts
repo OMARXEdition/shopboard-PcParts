@@ -16,7 +16,10 @@ export async function requestJson(
   path: string,
   { signal, fetcher = fetch }: RequestJsonOptions = {},
 ): Promise<unknown> {
-  const response = await fetcher(apiUrl(path), { signal })
+  const response = await fetcher(
+    path.startsWith('https://') ? path : apiUrl(path),
+    { signal },
+  )
   if (!response.ok) throw new ApiRequestError(response.status)
   return response.json()
 }

@@ -7,7 +7,7 @@ export type CartAction =
   | { type: 'add' | 'decrease' | 'remove'; id: string }
   | { type: 'clear' }
   | { type: 'restore'; lines: CartLine[] }
-export const CART_KEY = 'shopboard-pcparts:cart:v1'
+export const CART_KEY = 'shopboard-fashion:cart:v1'
 export function cartReducer(state: CartLine[], action: CartAction): CartLine[] {
   if (action.type === 'restore') return action.lines
   if (action.type === 'clear') return []
@@ -28,10 +28,7 @@ export function cartReducer(state: CartLine[], action: CartAction): CartLine[] {
         : [],
   )
 }
-export function restoreCart(
-  raw: string | null,
-  products: readonly Product[],
-): CartLine[] {
+export function restoreCart(raw: string | null): CartLine[] {
   try {
     const data: unknown = JSON.parse(raw ?? '[]')
     if (!Array.isArray(data)) return []
@@ -42,8 +39,8 @@ export function restoreCart(
         line === null ||
         !('id' in line) ||
         typeof line.id !== 'string' ||
+        !/^[1-9]\d*$/.test(line.id) ||
         seen.has(line.id) ||
-        !products.some((p) => p.id === line.id) ||
         !('quantity' in line) ||
         typeof line.quantity !== 'number' ||
         !Number.isSafeInteger(line.quantity) ||

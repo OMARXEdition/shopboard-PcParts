@@ -1,15 +1,13 @@
 import { useReducer, useEffect, useRef, type ReactNode } from 'react'
-import type { Product } from '../catalog/catalog.types'
-import { cartReducer, restoreCart, cartTotals, CART_KEY } from './cart.state'
+import { cartReducer, restoreCart, CART_KEY } from './cart.state'
 import { CartContext } from './cart-context'
 export interface CartProviderProps {
-  products: Product[]
   children: ReactNode
 }
-export function CartProvider({ products, children }: CartProviderProps) {
+export function CartProvider({ children }: CartProviderProps) {
   const [lines, dispatch] = useReducer(cartReducer, [], () => {
     try {
-      return restoreCart(localStorage.getItem(CART_KEY), products)
+      return restoreCart(localStorage.getItem(CART_KEY))
     } catch {
       return []
     }
@@ -28,10 +26,10 @@ export function CartProvider({ products, children }: CartProviderProps) {
   }, [lines])
   const value = {
     lines,
-    ...cartTotals(lines, products),
+    count: lines.reduce((count, line) => count + line.quantity, 0),
     add: (id: string) => {
       if (
-        !products.some((p) => p.id === id) ||
+        !/^[1-9]\d*$/.test(id) ||
         lines.some((line) => line.id === id && line.quantity >= 999)
       )
         return false

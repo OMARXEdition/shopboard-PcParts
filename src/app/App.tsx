@@ -1,30 +1,47 @@
-import { useCatalog } from '../modules/catalog/useCatalog'
+import { lazy, Suspense } from 'react'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { CartProvider } from '../modules/cart/CartProvider'
-import { Store } from './Store'
+import { Header } from '../components/layout/Header'
+import { Footer } from '../components/layout/Footer'
+import { RetryBoundary } from '../components/ui/RetryBoundary'
+import { clearCatalogRequests } from '../modules/catalog/catalog-resource'
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const CatalogPage = lazy(() => import('../modules/catalog/CatalogPage'))
+const ProductPage = lazy(() => import('../modules/product-detail/ProductPage'))
+const CartPage = lazy(() => import('../modules/cart/CartPage'))
+const CheckoutPage = lazy(() => import('../modules/checkout/CheckoutPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
+
 export default function App() {
-  const { products, error, retry } = useCatalog()
-  if (products)
-    return (
-      <CartProvider products={products}>
-        <Store products={products} />
-      </CartProvider>
-    )
   return (
-    <main className="container status-panel">
-      <a className="brand" href="#">
-        SHOPBOARD / PC PARTS
-      </a>
-      <h1>{error ? 'Connection interrupted.' : 'Loading the parts...'}</h1>
-      <p>
-        {error
-          ? 'The catalog could not be loaded. Check your connection and try again.'
-          : 'Opening the hardware shelf. Hang tight, builder.'}
-      </p>
-      {error && (
-        <button className="primary-button" onClick={retry}>
-          Try again
-        </button>
-      )}
-    </main>
+    <HashRouter>
+      <CartProvider>
+        <Header />
+        <main id="main-content">
+          <RetryBoundary onRetry={clearCatalogRequests}>
+            <Suspense
+              fallback={
+                <div className="container status-panel" role="status">
+                  Loading this page...
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products" element={<CatalogPage />} />
+                <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </RetryBoundary>
+        </main>
+        <Footer />
+      </CartProvider>
+    </HashRouter>
   )
 }

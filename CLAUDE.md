@@ -1,40 +1,16 @@
-# CLAUDE.md
+# React project rules
 
-## React workflow
+Read `AGENTS.md` and `DESIGN.md` before UI changes, and `docs/architecture.md` before moving feature boundaries. Keep one React component per file where it has a distinct responsibility. Place feature code under `src/modules/<feature>/`, app composition under `src/app/`, and shared UI under `src/components/`. Do not add plans, prompts, chat logs, unused files or unapproved product behavior.
 
-Read AGENTS.md and Design.md before changing the application. Keep each React
-component in its own file, feature state near its owner, and reusable controls in
-`src/components/ui/`. Keep page, layout and notification pieces in their
-`src/components/` subfolders. Pass typed props and callbacks; derive filtered lists and totals
-rather than copying them into state. Use the installed Vercel React best-practices
-and composition-pattern skills in .claude/skills/ when relevant. Add no other skill
-kits or generated agent plans to the repository.
+Validate API JSON before it becomes a Product. Keep the cart provider as the only owner of shared cart state; save only IDs and quantities, and derive count, price and visible products. Keep search and form state local. Use stable product IDs for keys. Lazy-load route modules and put Suspense and retryable error handling inside the shared layout. Avoid fetch effects when Suspense already owns loading.
 
-Validate external JSON from unknown values before creating Product records. Keep
-state reducers and catalog logic free of DOM access. Render arrays with stable
-IDs, and clean up effects and pending animation frames under Strict Mode.
+## Rules learned from earlier mistakes
 
-## Rules from mistakes observed in this project
+- A catalog parser once asserted `data as Product[]` and trusted external input. Narrow unknown data field by field and reject malformed responses.
+- A product list once used index keys, which moved card state to another item after sorting. Use API IDs for rendered products.
+- A cart update once mutated an item and reused the same array, leaving the UI stale. Use reducer actions that return new state.
+- A previous deployment used unbuilt source and a local TypeScript import failed in the browser. Publish only `dist` and inspect network requests from the built preview.
+- An earlier README described a dialog after the app had moved to routes. Update the route table and component tree whenever navigation changes.
+- A file called `Backpack.jpg` displayed a forest. Inspect downloaded pixels and licenses before adding photos to the manifest; a filename alone does not prove the image matches the product.
 
-- The catalog parser ended by asserting `data as Product[]`. That assertion hid
-  the boundary between external input and trusted data. Validate each field and
-  build typed Product values explicitly; an assertion is not runtime validation.
-- App.tsx and shared/ui.tsx held multiple components. That made responsibilities
-  and prop contracts harder to locate. Give each component its own named file
-  and document its props and state in README.md.
-- Decorative particles used array indexes as React keys. Indexes describe a
-  position, not an item. Give fixed particles stable explicit IDs and use those
-  IDs as keys; product cards use product IDs.
-- The hero photo replaced the approved pixel-computer illustration. Check
-  Design.md before changing asset roles: the hero and logo use pixel artwork,
-  while the catalog uses licensed real photographs.
-
-## Verification and reporting
-
-Run lint, formatting checks, TypeScript checks, tests, and the production build
-before reporting success. Use React DevTools to inspect the component tree and
-identify each component's props and state when browser tooling is available.
-Report that check as pending if it was not performed; tests are not a DevTools
-inspection. Record real debugging evidence in the project debugging logs and
-explain what changed, where, why, and how it was checked. Do not commit generated
-plans, prompts, secret files, or unused artwork. Preserve required photo credits.
+Run lint, format:check, typecheck, tests and build before reporting success. Confirm delayed, failed and empty API modes in the browser, plus mobile layout and keyboard access. Do not claim a Console or React DevTools check without observing it.

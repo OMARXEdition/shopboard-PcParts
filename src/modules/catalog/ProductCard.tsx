@@ -1,45 +1,29 @@
 import type { Product } from './catalog.types'
-import { WindowBar } from './WindowBar'
-import { ProductImage } from './ProductImage'
+import { Link } from 'react-router-dom'
 import { formatPrice } from '../../shared/format'
+import { ProductPhotoView } from './ProductPhotoView'
+import type { ProductPhoto } from './photo-manifest'
 export interface ProductCardProps {
   product: Product
-  position: number
-  onView: (product: Product) => void
-  onAdd: (product: Product) => void
+  photo?: ProductPhoto
 }
-export function ProductCard({
-  product: p,
-  position,
-  onView,
-  onAdd,
-}: ProductCardProps) {
+export function ProductCard({ product, photo }: ProductCardProps) {
   return (
     <article className="window product-card">
-      <WindowBar>
-        <span className="numeric">{String(position).padStart(2, '0')}</span> /{' '}
-        {p.category.toUpperCase()}
-      </WindowBar>
-      <button
-        className="product-image-button"
-        aria-label={`View ${p.name}`}
-        onClick={() => onView(p)}
-      >
-        <ProductImage path={p.image} alt={p.alt} className="product-art" />
-      </button>
+      <div className="window-bar">{product.category}</div>
+      {photo && <ProductPhotoView photo={photo} />}
       <div className="product-info">
-        <p className="category-label">{p.category} / category photo</p>
-        <h3 className="product-title">{p.name}</h3>
-        <p className="product-description">{p.specs[0].value}</p>
+        <h2 className="product-title">
+          <Link to={`/products/${product.id}`}>{product.name}</Link>
+        </h2>
+        <p>{product.inStock ? 'In stock' : 'Sold out'}</p>
         <div className="product-bottom">
-          <span className="price numeric">{formatPrice(p.priceCents)}</span>
-          <button
-            className="primary-button"
-            aria-label={`Add ${p.name} to cart`}
-            onClick={() => onAdd(p)}
-          >
-            + Add
-          </button>
+          <span className="price numeric">
+            {formatPrice(product.priceCents)}
+          </span>
+          <Link className="secondary-button" to={`/products/${product.id}`}>
+            View product
+          </Link>
         </div>
       </div>
     </article>

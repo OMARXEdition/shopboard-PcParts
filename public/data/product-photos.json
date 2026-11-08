@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "image": "photos/leather-tote-bag.jpg",
+      "alt": "Representative leather tote bag photograph",
+      "author": "MIKI Yoshihito",
+      "source": "https://www.flickr.com/photos/7940758@N07/53108204286",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "id": "2",
+      "image": "photos/canvas-backpack.jpg",
+      "alt": "Representative canvas backpack photograph",
+      "author": "Menswear Market",
+      "source": "https://www.flickr.com/photos/85546319@N04/8709816111",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "id": "3",
+      "image": "photos/mini-crossbody-bag.jpg",
+      "alt": "Representative mini crossbody bag photograph",
+      "author": "SPERA.de Designerschuhe, Taschen und Accessoires",
+      "source": "https://commons.wikimedia.org/wiki/File:DKNY_Mini_Flap_Crossbody_W_-_SS_Crossbody_R1513004_Kalbsleder_taupe_(4)_(16688909500).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "id": "4",
+      "image": "photos/white-sneakers.jpg",
+      "alt": "Representative white sneakers photograph",
+      "author": "Maksim Sokolov and Melania Sokolova",
+      "source": "https://commons.wikimedia.org/wiki/File:White_sneakers.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "5",
+      "image": "photos/running-shoes.jpg",
+      "alt": "Representative running shoes photograph",
+      "author": "Petar Milošević",
+      "source": "https://commons.wikimedia.org/wiki/File:Asics_Gel-Cumulus_22.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "6",
+      "image": "photos/suede-loafers.jpg",
+      "alt": "Representative loafers photograph",
+      "author": "Peachyeung316",
+      "source": "https://commons.wikimedia.org/wiki/File:Handmade_Lake_Blue_Loafers_Shoe.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "7",
+      "image": "photos/wool-scarf.jpg",
+      "alt": "Representative wool scarf photograph",
+      "author": "Deryck Chan",
+      "source": "https://commons.wikimedia.org/wiki/File:Alpaca_wool_scarf.JPG",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "id": "8",
+      "image": "photos/silver-watch.jpg",
+      "alt": "Representative silver wristwatch photograph",
+      "author": "www.trek.today",
+      "source": "https://www.flickr.com/photos/34107995@N00/3313416123",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "id": "9",
+      "image": "photos/sunglasses.jpg",
+      "alt": "Representative sunglasses photograph",
+      "author": "ShyAndroid",
+      "source": "https://commons.wikimedia.org/wiki/File:Heart_sunglasses,_front_view.jpg",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "10",
+      "image": "photos/travel-duffel-bag.jpg",
+      "alt": "Representative travel duffel bag photograph",
+      "author": "Erol Ahmed",
+      "source": "https://commons.wikimedia.org/wiki/File:Duffel_bag_on_the_floor_next_to_a_chair_(9XiN0r2NWSM).jpg",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "11",
+      "image": "photos/rain-boots.jpg",
+      "alt": "Representative rain boots photograph",
+      "author": "Santeri Viinamäki",
+      "source": "https://commons.wikimedia.org/wiki/File:Green_rubber_boots_20170218.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "12",
+      "image": "photos/leather-belt.jpg",
+      "alt": "Representative leather belt photograph",
+      "author": "Sean MacEntee",
+      "source": "https://www.flickr.com/photos/18090920@N07/12205374334",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    }
+  ]
+}

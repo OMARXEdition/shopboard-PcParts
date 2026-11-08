@@ -1,38 +1,26 @@
-import { apiUrl } from '../../shared/api-client'
-import { PhotoCredits } from '../../modules/catalog/PhotoCredits'
+import { Link } from 'react-router-dom'
 export function Footer() {
   return (
     <footer className="site-footer" id="about">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <img src={apiUrl('art/logo.svg')} alt="" />
-          <h2>
-            LET'S BUILD
-            <br />
-            SOMETHING RAD.
-          </h2>
+          <h2>SHOPBOARD</h2>
+          <p>Everyday style, explored one find at a time.</p>
         </div>
         <div>
-          <h3>A little about us</h3>
+          <h3>About this demo</h3>
           <p>
-            Shopboard-PcParts is a learning project celebrating modern hardware
-            and the playful early web.
+            A course storefront using the ShopBoard fashion API. Product data is
+            provided for practice.
           </p>
         </div>
         <div className="footer-links">
-          <h3>Good to know</h3>
-          <a href="#catalog">Explore the parts ↑</a>
-          <p>
-            Photos represent hardware categories; specifications and USD prices
-            are sample data. No real orders.
-          </p>
+          <h3>Explore</h3>
+          <Link to="/products">Browse the catalog</Link>
+          <p>No payment or real order is taken.</p>
         </div>
       </div>
-      <PhotoCredits />
-      <div className="footer-bottom container">
-        MADE WITH CURIOSITY <span aria-hidden="true">♥</span> AND PIXELS ·
-        SHOPBOARD-PCPARTS
-      </div>
+      <div className="footer-bottom container">SHOPBOARD · DEMO STORE</div>
     </footer>
   )
 }

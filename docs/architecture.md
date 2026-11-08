@@ -1,56 +1,11 @@
 # Architecture
 
-## Module boundaries
+`src/app/App.tsx` composes the shared layout, cart provider, hash routes, Suspense and retry boundary. Route modules are lazy imports. Hash routing keeps direct route refreshes usable on GitHub Pages without a server rewrite.
 
-- `src/app/`: page composition and provider wiring.
-- `src/components/`: UI without a feature module, grouped under `home/`, `layout/`, `notification/` and `ui/`. Home pointer behavior and notification timing live beside their components.
-- `src/modules/catalog/`: product types, API validation and loading, immutable search/filter/sort logic, product imagery, credits and catalog components.
-- `src/modules/cart/`: cart reducer, persistence, selectors and cart UI.
-- `src/modules/product-detail/`: selected-product state, dialog, feature types and specification rendering. Details consume the selected catalog product; they do not issue a duplicate request.
-- `src/shared/`: feature-neutral JSON request client and non-visual utilities used across features, such as money formatting.
-- `public/data/products.json`: the sole catalog source, fetched over HTTP.
-- `public/photos/`: real, licensed category photographs and source metadata; `public/art/` contains the original pixel hero and logo.
+The catalog feature validates unknown API JSON and exposes stable cached promises for React `use`. A product page requests `/api/products/:id`; the catalog and cart pages request `/api/products`. The catalog and product pages also fetch `public/data/product-photos.json`, a local manifest of paths to licensed photos in `public/photos/`. Both requests start before suspension to avoid a waterfall. Photo data never replaces API product data. `VITE_SHOPBOARD_API_BASE` selects normal, delayed, failed or empty API behavior without changing application code. The shared request client accepts the trusted HTTPS course base and resolves local paths against Vite's base.
 
-Keep feature components near the behavior they render. Pure functions and reducers
-have no DOM access. Reusable UI in `src/components/ui/` may use DOM APIs for focus
-and dialog behavior; application logic should not.
+The cart Context is mounted above the routes. Its reducer stores only product IDs and quantities; it never stores names or prices. The cart page derives totals from the current catalog in integer cents. Storage reads and writes can fail without disabling the in-memory cart. Checkout owns only its form and local demo completion state. Search, category and sort live only in the catalog page, and filtered products are derived during render.
 
-## Data flow
+The shared layout does not fetch data. The page content sits inside Suspense and a retryable Error Boundary, so a slow or failed catalog leaves navigation available. No effect is used to fetch products; the only cart effect persists state, and it skips the initial write to preserve saved data.
 
-The catalog feature requests JSON through the shared, feature-neutral API client.
-Catalog API code validates unknown JSON before creating typed Product records.
-Catalog loading, success, empty and error are distinct UI states; retry starts a
-new request. Abort stale requests so Strict Mode and unmounts do not produce
-outdated state updates. The application composes catalog and cart features.
-
-Search and category filtering operate on derived copies. Sorting changes the
-view, never the source catalog. Default order is the original JSON order.
-
-A product detail dialog receives the selected product and cart-add action. Cart
-state is shared through context/reducer boundaries. Persist only IDs and positive
-whole quantities. Reconcile saved IDs after a successful catalog load, not during
-loading or a failed fetch. Derive names, images and prices from the current
-catalog. Use integer cents for calculations and format USD at the display edge.
-
-## Persistence and failure handling
-
-Invalid storage must not crash the UI. Browser storage can fail on both reads and
-writes; retain a usable in-memory cart. Do not save an empty initial loading cart
-over valid persisted state. A missing product photo gets a fallback rather
-than an endless reload loop.
-
-## Static hosting
-
-Vite's default base path is `/`. The GitHub Pages workflow builds with
-`/Shopboard-PcParts/` for its repository subpath. Resolve JSON and images against
-the active build base. Product details are dialogs, so no server route rewriting
-is required. GitHub Actions publishes built dist content only. Project-local agent skills are
-not loaded by the browser or included in the application module graph.
-
-## Verification
-
-Test external data validation, fetch failures/retry, derived catalog behavior,
-reducer/persistence behavior, and accessible component interactions. Tests use
-Vitest and React Testing Library in jsdom. Production preview checks cover visual
-layout, images, focus behavior, Console errors and network paths. Automated test
-success alone does not establish a visual check.
+Tests cover API validation, product-by-ID requests, cart state, routing, form validation and page states. Production preview must be checked at mobile and desktop sizes with keyboard access and a clean normal-path Console.
